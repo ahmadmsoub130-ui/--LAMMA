@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10091f">
+<meta name="description" content="لَمّة — ألعاب جماعية عربية للأصدقاء والعائلة">
+<title>لَمّة 🎮 | ألعاب جماعية</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif;background:#0b0714;color:#fff}
+body{overflow-x:hidden;background:radial-gradient(circle at 80% 0%,#351064 0,transparent 35%),radial-gradient(circle at 10% 40%,#25114b 0,transparent 30%),#090611}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.container{width:min(1120px,92%);margin:auto}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:28px;font-weight:900}.logo span{filter:drop-shadow(0 0 12px #a855f7)}
+.navbtn,.ghost{padding:11px 17px;border-radius:14px;background:#ffffff10;color:#fff;border:1px solid #ffffff18}
+.hero{padding:55px 0 35px;text-align:center}
+.badge{display:inline-block;padding:8px 13px;border-radius:99px;background:#a855f71a;border:1px solid #c084fc44;color:#e9d5ff;font-size:13px}
+h1{font-size:clamp(42px,8vw,78px);margin:18px 0 10px;line-height:1.05}
+.grad{background:linear-gradient(90deg,#fff,#d8b4fe,#f0abfc);-webkit-background-clip:text;color:transparent}
+.hero p{max-width:650px;margin:0 auto 28px;color:#b9b1c8;font-size:18px;line-height:1.8}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.primary{padding:15px 25px;border-radius:16px;background:linear-gradient(135deg,#9333ea,#ec4899);color:#fff;font-weight:800;box-shadow:0 12px 35px #9333ea33}
+section{padding:35px 0}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
+h2{margin:0;font-size:28px}.muted{color:#aaa1b7}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.card{position:relative;overflow:hidden;border:1px solid #ffffff12;background:linear-gradient(145deg,#ffffff0b,#ffffff04);border-radius:22px;padding:18px;min-height:190px;transition:.2s;box-shadow:0 15px 45px #0004}
+.card:hover{transform:translateY(-4px);border-color:#c084fc55}
+.cover{height:105px;border-radius:17px;display:grid;place-items:center;font-size:52px;background:radial-gradient(circle,#7e22ce66,#11101b)}
+.card h3{margin:13px 0 5px}.card p{margin:0;color:#aaa1b7;font-size:13px}
+.cta{margin:35px 0;padding:28px;border:1px solid #ffffff14;border-radius:25px;background:linear-gradient(110deg,#ffffff0a,#a855f714)}
+footer{padding:35px 0;color:#777080;text-align:center;font-size:13px}
+.modal{position:fixed;inset:0;background:#0009;backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
+.modal.show{display:flex}.box{width:min(480px,100%);background:#15101f;border:1px solid #ffffff1a;border-radius:24px;padding:24px;box-shadow:0 30px 100px #000}
+.box h2{margin-bottom:16px}.close{float:left;background:#ffffff0c;color:#fff;border-radius:12px;width:38px;height:38px}
+label{display:block;margin:14px 0 7px;color:#c9c0d1;font-size:14px}
+input{width:100%;padding:14px;border-radius:14px;border:1px solid #ffffff18;background:#0d0915;color:#fff;outline:none}
+input:focus{border-color:#a855f7}.msg{margin-top:13px;color:#f0abfc;font-size:14px}
+.code{font-size:48px;font-weight:900;letter-spacing:8px;text-align:center;margin:20px 0;background:#ffffff08;border-radius:18px;padding:15px}
+.list{display:grid;gap:10px}.player{display:flex;justify-content:space-between;padding:13px;background:#ffffff08;border-radius:13px}
+@media(max-width:850px){.games{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){nav{height:62px}.navbtn{display:none}.games{grid-template-columns:1fr 1fr}.card{min-height:170px}.hero{padding-top:35px}.cover{height:90px}h1{font-size:48px}}
+</style>
+</head>
+<body>
+<div class="container">
+<nav><div class="logo">لَمّة <span>🎮</span></div><button class="navbtn" onclick="openModal('join')">انضم للّمة</button></nav>
+
+<header class="hero">
+<span class="badge">ألعاب جماعية عربية • بدون حساب</span>
+<h1>اجتمعوا... وخلّوا <span class="grad">اللّمّة تبدأ!</span></h1>
+<p>منصة ألعاب سريعة للأصدقاء والعائلة. أنشئ غرفة برمز من 4 أرقام، خلي أصحابك ينضموا، وابدأوا المنافسة.</p>
+<div class="actions">
+<button class="primary" onclick="openModal('create')">🎉 أنشئ لَمّة</button>
+<button class="ghost" onclick="openModal('join')">🔑 عندي رمز غرفة</button>
+</div>
+</header>
+
+<section>
+<div class="sectionhead"><div><h2>الألعاب</h2><div class="muted">اختاروا لعبتكم وابدأوا</div></div></div>
+<div class="games" id="games"></div>
+</section>
+
+<div class="cta"><h2>🏆 مين رح يصير بطل اللّمّة؟</h2><p class="muted">اجمعوا النقاط عبر الجولات وشوفوا الترتيب النهائي.</p><button class="primary" onclick="openModal('create')">ابدأ الآن</button></div>
+<footer>لَمّة © 2026 — مشروع مستقل</footer>
+</div>
+
+<div class="modal" id="create"><div class="box"><button class="close" onclick="closeAll()">×</button><h2>🎉 إنشاء لَمّة</h2>
+<label>اسمك</label><input id="hostName" maxlength="20" placeholder="مثلاً: أحمد">
+<button class="primary" style="width:100%;margin-top:16px" onclick="createRoom()">إنشاء الغرفة</button><div id="createMsg" class="msg"></div></div></div>
+
+<div class="modal" id="join"><div class="box"><button class="close" onclick="closeAll()">×</button><h2>🔑 انضم للّمة</h2>
+<label>اسمك</label><input id="joinName" maxlength="20" placeholder="مثلاً: محمد">
+<label>رمز الغرفة</label><input id="roomCode" inputmode="numeric" maxlength="4" placeholder="4827">
+<button class="primary" style="width:100%;margin-top:16px" onclick="joinRoom()">انضمام</button><div id="joinMsg" class="msg"></div></div></div>
+
+<div class="modal" id="room"><div class="box"><button class="close" onclick="closeAll()">×</button><h2>🎊 لَمّتك جاهزة</h2><div class="code" id="shownCode">0000</div><p class="muted" style="text-align:center">أرسل الرمز لأصحابك ليدخلوا الغرفة.</p><div class="list" id="players"></div><button class="primary" style="width:100%;margin-top:18px" onclick="startGame()">▶ ابدأ اللعبة</button></div></div>
+
+<div class="modal" id="game"><div class="box"><button class="close" onclick="closeAll()">×</button><h2 id="gameTitle">اللعبة</h2><p class="muted">هذه نسخة البداية. تم تجهيز واجهة اختيار الألعاب والغرف، ويمكن ربطها لاحقًا بقاعدة بيانات لإتاحة اللعب الحقيقي بين الأجهزة.</p><button class="primary" style="width:100%" onclick="closeAll()">تمام 🎮</button></div></div>
+
+<script>
+const games=[
+["🕵️","المحتال","اكتشفوا المحتال قبل فوات الأوان"],
+["🧠","مين يعرف أكثر؟","أسئلة سريعة واختبروا معلوماتكم"],
+["😂","مين الأكثر؟","صوّتوا للشخص الذي ينطبق عليه السؤال"],
+["🎭","مثّلها","مثّل الكلمة وخلي فريقك يخمّن"],
+["🎨","ارسم وخمّن","ارسم بأسرع ما يمكن"],
+["⚡","أسرع إجابة","أول إجابة صحيحة تكسب النقاط"],
+["🔥","صراحة أو تحدي","أسئلة وتحديات للّمة"],
+["👤","من أنا؟","خمن الشخصية التي على جبينك"],
+["🤔","صح أم كذب؟","اعرفوا الحقيقة من الخدعة"],
+["🗳️","صوّت لصاحبك","تصويت سري ونتائج مضحكة"],
+["🔤","حرف وكلمة","حرف واحد... وإجابات كثيرة"],
+["👑","السؤال الكبير","جولة خاصة لاختبار اللمة"]
+];
+document.getElementById("games").innerHTML=games.map((g,i)=>`<article class="card" onclick="selectGame(${i})"><div class="cover">${g[0]}</div><h3>${g[1]}</h3><p>${g[2]}</p></article>`).join("");
+
+let room=null;
+function openModal(id){closeAll();document.getElementById(id).classList.add("show")}
+function closeAll(){document.querySelectorAll(".modal").forEach(x=>x.classList.remove("show"))}
+function createRoom(){
+ const name=document.getElementById("hostName").value.trim();
+ if(!name){document.getElementById("createMsg").textContent="اكتب اسمك أولاً.";return}
+ room={code:String(Math.floor(1000+Math.random()*9000)),players:[name]};
+ document.getElementById("shownCode").textContent=room.code;renderPlayers();openModal("room");
+}
+function renderPlayers(){document.getElementById("players").innerHTML=room.players.map((p,i)=>`<div class="player"><span>${i===0?"👑 ":""}${escapeHtml(p)}</span><span>${i===0?"المضيف":"لاعب"}</span></div>`).join("")}
+function joinRoom(){
+ const name=document.getElementById("joinName").value.trim(), code=document.getElementById("roomCode").value.trim();
+ if(!name||code.length!==4){document.getElementById("joinMsg").textContent="اكتب الاسم ورمزًا من 4 أرقام.";return}
+ document.getElementById("joinMsg").textContent="تم قبول الطلب في نسخة العرض. للّعب الحقيقي بين الأجهزة نحتاج قاعدة بيانات/خادم.";
+}
+function selectGame(i){document.getElementById("gameTitle").textContent=games[i][0]+" "+games[i][1];openModal("game")}
+function startGame(){selectGame(0)}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+</script>
+</body>
+</html>
